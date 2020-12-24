@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>operating phone_type</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<table class="table">
+    <tr>
+        <td>
+            <form name="input" action="/findById" method="get">
+                id： <input type="text" name="id">
+                <input type="submit" value="根据id查询">
+            </form>
+        </td>
+        <td colspan="">
+            <form name="input" action="/delete" method="get">
+                id： <input type="text" name="id">
+                <input type="submit" value="删除">
+            </form>
+        </td>
+        <td>
+            <form action="/find" method="get">
+                <input type="submit" value="查询所有">
+            </form>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <form name="input" action="/update" method="get">
+                id： <input type="text" name="type_id">
+                电话号码: <input type="text" name="number_part">
+                运营商: <input type="text" name="type_name">
+                备注: <input type="text" name="type_remark">
+                <input type="submit" value="修改">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <form name="input" action="/add" method="get">
+                电话号码: <input type="text" name="number_part">
+                运营商: <input type="text" name="type_name">
+                备注: <input type="text" name="type_remark">
+                <input type="submit" value="增加">
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+<table class="table" border="1">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">电话号码</th>
+        <th scope="col">运营商</th>
+        <th scope="col">备注</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="phone:${phones}">
+        <th th:text="${phone.type_id}" scope="row">1</th>
+        <td th:text="${phone.number_part}"></td>
+        <td th:text="${phone.type_name}"></td>
+        <td>@mdo</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

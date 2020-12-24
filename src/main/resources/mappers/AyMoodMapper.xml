@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootdemo.dao.AyMoodDao">
+    <resultMap id="MoodResultMap" type="com.example.springbootdemo.model.AyMood">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="praise_num" property="praiseNum" jdbcType="VARCHAR"/>
+        <result column="publish_time" property="publishTime" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findById" resultMap="MoodResultMap" parameterType="String">
+        select * from ay_mood a
+        <where>
+            a.user_id = #{userId}
+        </where>
+    </select>
+    <delete id="delete" parameterType="String">
+        delete from ay_mood a
+        <where>
+            a.user_id = #{userId}
+        </where>
+    </delete>
+    <insert id="save" parameterType="com.example.springbootdemo.model.AyMood">
+         insert into ay_mood(id,content,user_id,praise_num,publish_time) values (#{id},#{content},#{userId},#{praiseNum},#{publishTime})
+    </insert>
+    <update id="update" parameterType="com.example.springbootdemo.model.AyMood">
+        update ay_mood  set
+        content = #{content}
+        <where>
+            user_id = #{userId}
+        </where>
+    </update>
+</mapper>
